@@ -12,25 +12,32 @@ function CalculatorPage() {
         fetch(`${HOST}/server.php?action=structure`)
         .then( res => res.json() )
         .then( res => {
-            console.log(res)
             const reducedArray = res.splice(2)
             let separatedArray = []
             reducedArray.forEach( item => {
-                let currentItem = item.split(' ')
-                if (currentItem[0] === 'Категория') separatedArray.push(currentItem)
+                item.category_content = item.category_content.splice(2)
             })
-            setCategories(separatedArray)
+            setCategories(reducedArray)
         })
     }, [])
 
     function CategoryPoint({item}) {
+        let categoryOptions = []
+        item.category_content.forEach( item => {
+            categoryOptions.push(  {
+                key: item,
+                text: item,
+                value: item,
+              })
+        })
         return (
-            <Container key={item[1]}>
+            <Container key={item.category}>
                 <Header>{item[1]}</Header>
                 <Dropdown
-                    placeholder={item[1]}
+                    placeholder={item.category}
                     fluid
                     selection
+                    options={categoryOptions}
                 />
             </Container>
         )
