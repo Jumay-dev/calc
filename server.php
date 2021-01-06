@@ -17,23 +17,18 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         die (json_encode($response));
     }
 
-    if(isset($_GET['action']) && $_GET['action'] == "get_content") {
+    if(isset($_GET['action']) && $_GET['action'] == "get_file_names") {
+        $response = [];
         $directory = "./content/" . $_GET['directory'];
-        $dir_content = scandir($directory);
-        die (print_r([
-            'answer' => $dir_content,
-            'path' => $directory
-        ]));
-    }
-
-    if(isset($_GET['action']) && $_GET['action'] == "get_all_files") {
-        $directory = "./content/" . $_GET['directory'];
-        die('Вернуть все файлы');
-    }
-
-    if(isset($_GET['action']) && $_GET['action'] == "get_file") {
-        $directory = "./content/" . $_GET['directory'];
-        die('Вернуть определенный файл');
+        $files_there = scandir($directory);
+        foreach($files_there as $file) {
+            if ($file !== '.' && $file !== '..') {
+                $step['path'] = 'http://calc:81/' . $directory . '/' . $file;
+                $step['name'] = $file;
+                $response[] = $step;
+            }
+        }
+        die(json_encode($response));
     }
 }
 die('not enter');
