@@ -38,8 +38,22 @@ function Offers({ offers, calculations }) {
 
         return (
             <Grid.Column>
-                <Card>
-                    <Image src={offer.path} wrapped ui={false} />
+                <Card style={{
+                    height: 400
+                }}>
+                    <div style={{
+                        overflow: "hidden",
+                        height: 250,
+                        display: "flex",
+                        justifyContent: "center"
+                    }}>
+                        <Image 
+                        src={offer.path}
+                        style={{
+                            height: 250
+                        }}
+                        />
+                    </div>
                     <Card.Content>
                     <Card.Header>{offerInfo[0]}</Card.Header>
                     <Card.Description>
@@ -76,7 +90,13 @@ function Offers({ offers, calculations }) {
     }
 
     return (
-        <Grid doubling columns={3} centered>
+        <Grid style={{
+            margin: 0,
+            padding: 0
+        }}
+        doubling 
+        columns={3} 
+        centered>
             <OffersSeeder offers={offers}/>            
         </Grid>
     )

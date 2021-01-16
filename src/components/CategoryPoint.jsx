@@ -37,7 +37,7 @@ function CategoryPoint({ item, calculations }) {
     }
 
     return (
-        <Container key={categoryBody[1]}>
+        <div key={categoryBody[1]}>
             <Header>{categoryBody[1]}</Header>
             <Dropdown
                 placeholder={categoryBody[1]}
@@ -51,7 +51,7 @@ function CategoryPoint({ item, calculations }) {
             point={point}
             calculations={calculations}
             />
-        </Container>
+        </div>
     )
 }
 
