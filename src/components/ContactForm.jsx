@@ -19,14 +19,14 @@ function ContactForm( { customerInfo, setCustomerInfo }) {
         setCustomerInfo(currentInfo)
     }
     return (
-        <Container style={{
+        <div style={{
             display: "flex",
             flexDirection: "column"
         }}>
             <h1>Расчет заказа</h1>
             <Input onChange={changeHandler} value={customerInfo.name} name="name" label="ФИО" style={inputStyle}/>
             <Input onChange={changeHandler} value={customerInfo.phone} name="phone" label="Телефон" style={inputStyle}/>
-        </Container>
+        </div>
     )
 }
 

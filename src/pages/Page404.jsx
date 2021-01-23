@@ -1,11 +1,21 @@
 import React from "react"
-import {} from "semantic-ui-react"
+import { Container, Button } from "semantic-ui-react"
+import { Link } from 'react-router-dom'
 
 function Page404() {
     return (
-        <div>
-            404
-        </div>
+        <Container text>
+            Страница не найдена
+            <Button 
+                color="teal"
+                basic
+                style={{margin: 0, marginBottom: "2em", padding: "1em"}}
+                as={Link}
+                to="/"
+            >
+                Назад
+            </Button>
+        </Container>
     )
 }
 
