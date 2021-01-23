@@ -11,7 +11,13 @@ import {
  } from "semantic-ui-react"
  import Offers from "../components/Offers"
 
-function CategoryPoint({ item, calculations }) {
+function CategoryPoint(
+    { 
+        item, 
+        calculations,
+        calcs,
+        setCalcs
+     }) {
     const [offers, setOffers] = useState([])
     const [point, setPoint] = useState()
 
@@ -50,6 +56,8 @@ function CategoryPoint({ item, calculations }) {
             offers={offers} 
             point={point}
             calculations={calculations}
+            calcs={calcs}
+            setCalcs={setCalcs}
             />
         </div>
     )

@@ -1,8 +1,9 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    
-    header('Access-Control-Allow-Origin: *');
+// CORS disabled
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
+if ($_SERVER['REQUEST_METHOD'] == "GET") {
     if(isset($_GET['action']) && $_GET['action'] == "structure") {
         $dir_content = scandir("./content");
         $response = [];
@@ -29,6 +30,21 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
             }
         }
         die(json_encode($response));
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+    if(isset($_GET['action']) && $_GET['action'] == "order") {
+        $json = file_get_contents('php://input');
+        $data = json_decode($json);
+
+        die(json_encode(array(
+            'order' => $data->order,
+            'info' => $data->info,
+            'code' => $data->code,
+            'success' => true
+        )));
     }
 }
 die('not enter');

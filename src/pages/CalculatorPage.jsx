@@ -15,6 +15,7 @@ function CalculatorPage() {
         code: ''
     })
     let calculations = [];
+    const [calcs, setCalcs] = useState([])
 
     useEffect(() => {
         fetch(`${HOST}/server.php?action=structure`)
@@ -31,15 +32,30 @@ function CalculatorPage() {
 
 
     return (
-        <Container>
+        <Container style={{
+            display: "flex",
+            flexDirection: "column"
+        }}>
             <ContactForm 
                 customerInfo={customerInfo}
                 setCustomerInfo={setCustomerInfo}
             />
             
-            {categories.map(item => <CategoryPoint calculations={calculations} key={item.category} item={item} />)}
+            {categories.map(item => 
+            <CategoryPoint 
+                calculations={calculations} 
+                key={item.category} 
+                item={item} 
+                calcs={calcs}
+                setCalcs={setCalcs}
+            />)}
             
-            <ModalCalculations />
+            <ModalCalculations
+                customerInfo={customerInfo}
+                calculations={calculations}
+                calcs={calcs}
+                setCalcs={setCalcs}
+            />
         </Container>
     )
 }

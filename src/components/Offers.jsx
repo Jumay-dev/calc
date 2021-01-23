@@ -9,7 +9,13 @@ import {
     Button
  } from "semantic-ui-react"
 
-function Offers({ offers, calculations }) {
+function Offers(
+    { 
+        offers, 
+        calculations,
+        calcs,
+        setCalcs
+     }) {
     const [ isChecked, setChecked ] = useState()
     
     function OfferCard({ offer }) {
@@ -23,6 +29,15 @@ function Offers({ offers, calculations }) {
                     offer_name: offerInfo[0],
                     name: offer.name
                 })
+            
+            let currentCalcs = calcs.slice(0)
+            currentCalcs.push({
+                file_name: separated,
+                price: offerInfo[1],
+                offer_name: offerInfo[0],
+                name: offer.name
+            })
+            setCalcs(currentCalcs)
 
             setChecked(offer)
         }
@@ -33,6 +48,15 @@ function Offers({ offers, calculations }) {
             if (index > -1) {
                 calculations.splice(index, 1);
             }
+            
+            let currentCalcs = calcs.slice(0)
+            const stateFound = currentCalcs.find(item => item.name === offer.name)
+            const stateIndex = currentCalcs.indexOf(stateFound)
+            if (stateIndex > -1) {
+                currentCalcs.splice(stateIndex, 1);
+            }
+            setCalcs(currentCalcs)
+            
             setChecked(false)
         }
 
@@ -78,13 +102,11 @@ function Offers({ offers, calculations }) {
         // console.log('isChecked', isChecked)
 
         if (!isChecked) {
-            console.log('false', isChecked)
             return offers.map( offer => (
                 <OfferCard key={offer.path} offer={offer}/>
             ))
         }
         else {
-            console.log('true')
             return <OfferCard offer={isChecked} />
         }
     }

@@ -2,7 +2,11 @@ import React from 'react'
 import { 
     Input,
     Container
- } from 'semantic-ui-react'
+} from 'semantic-ui-react'
+
+const inputStyle = {
+    marginBottom: '2em'
+}
 
 function ContactForm( { customerInfo, setCustomerInfo }) {
     // const changeHandler = (e, data) => setCustomerInfo(prev => {name: data.value, ...prev})
@@ -15,10 +19,13 @@ function ContactForm( { customerInfo, setCustomerInfo }) {
         setCustomerInfo(currentInfo)
     }
     return (
-        <Container>
-            <Input onChange={changeHandler} value={customerInfo.name} name="name" label="ФИО"/>
-            <Input onChange={changeHandler} value={customerInfo.phone} name="phone" label="Номер телефона"/>
-            <Input onChange={changeHandler} value={customerInfo.code} name="code" label="Код"/>
+        <Container style={{
+            display: "flex",
+            flexDirection: "column"
+        }}>
+            <h1>Расчет заказа</h1>
+            <Input onChange={changeHandler} value={customerInfo.name} name="name" label="ФИО" style={inputStyle}/>
+            <Input onChange={changeHandler} value={customerInfo.phone} name="phone" label="Номер телефона" style={inputStyle}/>
         </Container>
     )
 }
