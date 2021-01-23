@@ -25,7 +25,7 @@ function ContactForm( { customerInfo, setCustomerInfo }) {
         }}>
             <h1>Расчет заказа</h1>
             <Input onChange={changeHandler} value={customerInfo.name} name="name" label="ФИО" style={inputStyle}/>
-            <Input onChange={changeHandler} value={customerInfo.phone} name="phone" label="Номер телефона" style={inputStyle}/>
+            <Input onChange={changeHandler} value={customerInfo.phone} name="phone" label="Телефон" style={inputStyle}/>
         </Container>
     )
 }

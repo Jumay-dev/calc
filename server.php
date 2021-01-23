@@ -1,4 +1,6 @@
 <?php
+require 'server-config.php';
+
 // CORS disabled
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -24,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         $files_there = scandir($directory);
         foreach($files_there as $file) {
             if ($file !== '.' && $file !== '..') {
-                $step['path'] = 'http://calc:81/' . $directory . '/' . $file;
+                $step['path'] = HOST . $directory . '/' . $file;
                 $step['name'] = $file;
                 $response[] = $step;
             }

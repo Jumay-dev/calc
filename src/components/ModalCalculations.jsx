@@ -59,7 +59,6 @@ function ModalContent(
   return (
     <Modal.Content>
       <Modal.Description>
-        <Header>Предварительный рассчет</Header>
         <p>
           Пожалуйста, проверьте правильность вашего заказа и контактных данных!
         </p>
@@ -90,10 +89,7 @@ function ModalCalculations({calcs, customerInfo}) {
       order: calcs,
       code
     }
-    // const data = new FormData()
-    // data.append('info', customerInfo)
-    // data.append('order', calcs)
-    // data.append('code', code)
+
     setLoading(true)
     fetch(`${HOST}/server.php?action=order`, {
       method: "POST",
@@ -117,7 +113,7 @@ function ModalCalculations({calcs, customerInfo}) {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button color="teal" style={{margin: 0, marginTop: "2em", marginBottom: "2em", padding: "1em"}}>Рассчитать</Button>}
+      trigger={<Button color="teal" style={{margin: 0, marginTop: "2em", marginBottom: 10, padding: "1em"}}>Рассчитать</Button>}
     >
       <Modal.Header>Предварительный рассчет</Modal.Header>
 

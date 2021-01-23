@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { 
-    Container
+    Container,
+    Button
  } from "semantic-ui-react"
 import { HOST } from '../config/query'
 import CategoryPoint from "../components/CategoryPoint"
 import ContactForm from "../components/ContactForm"
 import ModalCalculations from "../components/ModalCalculations"
+import { Link } from 'react-router-dom'
 
 function CalculatorPage() {
     const [ categories, setCategories ] = useState([])
@@ -56,6 +58,16 @@ function CalculatorPage() {
                 calcs={calcs}
                 setCalcs={setCalcs}
             />
+            
+            <Button 
+            color="teal"
+            basic
+            style={{margin: 0, marginBottom: "2em", padding: "1em"}}
+            as={Link}
+            to="/"
+            >
+                Назад
+            </Button>
         </Container>
     )
 }
